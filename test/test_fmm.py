@@ -51,14 +51,14 @@ class testZeroin(unittest.TestCase):
     
     def test_bad_bounds(self):
         self.assertRaises(fmm.BadBoundsError,
-                          fmm.zeroin, 1, 2, lambda x: x, 0.01)
+                          fmm.zeroin, 1, 2, lambda x: x, self.tol)
         self.assertRaises(fmm.BadBoundsError,
-                          fmm.zeroin, -1, -2, lambda x: x, 0.01)
+                          fmm.zeroin, -1, -2, lambda x: x, self.tol)
     
     def test_non_converge_const(self):
         def f(x):
             return x if x == -1 else 1
-        self.assertRaises(fmm.NoConvergeError, fmm.zeroin, -1, 1, f, 0.01)
+        self.assertRaises(fmm.NoConvergeError, fmm.zeroin, -1, 1, f, self.tol)
     
     def test_non_converge_rand(self):
         # [x-1 if x<0.5 else x for x in
@@ -72,12 +72,13 @@ class testZeroin(unittest.TestCase):
             if abs(x) == 1:
                 return x
             return randseq.pop()
-        self.assertRaises(fmm.NoConvergeError, fmm.zeroin, -1, 1, f, 0.01)
+        self.assertRaises(fmm.NoConvergeError, fmm.zeroin, -1, 1, f, self.tol)
     
     def test_few_evals(self):
         "Too few allowed evaluations for convergence"
         f = lambda x: x**3 - 5 # takes > 3 evaluations to converge
-        self.assertRaises(fmm.NoConvergeError, fmm.zeroin, 1, 10, f, 0.0001, 3)
+        self.assertRaises(fmm.NoConvergeError,
+                          fmm.zeroin, 1, 10, f, self.tol, 3)
     
 
 if __name__ == '__main__':
