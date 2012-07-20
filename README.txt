@@ -24,11 +24,11 @@ Schleihauf):
 ! 28Jun02  1.91  RLC  Made cond OPTIONAL in Decomp
 ! 21Aug02  1.95  RLC  Made single and double precision versions 
 ! 11Oct02  1.96  RLC  Compute eps each time in RKFS
-! 20Jul12  0.1   PS   Port BrentZero to Python!
+! 20Jul12  0.1   PS   Port BrentZero to Python and add some tests
 
 
-This software is Public Domain. Have fun! And if you feel like porting more of
-the Fortran subroutines, share them back and I'll add them to the package!
+This software is Public Domain. Have fun. And if you feel like porting more of
+the Fortran subroutines, share them back and I'll add them to the package.
 
 
 
