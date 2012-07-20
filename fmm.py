@@ -50,9 +50,6 @@ def zeroin(lower, upper, func, tol, max_eval=25):
         tol1 = 2 * eps * abs(b) + 0.5 * tol   # convergence test
         xm = 0.5 * (c - b)
         if abs(xm) <= tol1 or fb == 0:
-            # verify answer
-            print a, b, c
-            print fa, fb, fc
             # SUCCESS
             return b
 
