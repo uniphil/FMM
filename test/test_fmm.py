@@ -55,14 +55,19 @@ class testZeroin(unittest.TestCase):
         self.assertRaises(fmm.BadBoundsError,
                           fmm.zeroin, -1, -2, lambda x: x, 0.01)
     
-    def test_non_converge(self):
+    def test_non_converge_const(self):
+        def f(x):
+            return x if x == -1 else 1
+        self.assertRaises(fmm.NoConvergeError, fmm.zeroin, -1, 1, f, 0.01)
+    
+    def test_non_converge_rand(self):
         import random
         def f(x):
             if abs(x) == 1:
                 return x
-            return 1
-        self.assertRaises(fmm.NoConvergeError,
-                          fmm.zeroin, -1, 1, f, 0.01)
+            fx = random.random()
+            return fx-1 if fx<0.5 else fx # -1 < x < -0.5 or 0.5 < x < 1
+        self.assertRaises(fmm.NoConvergeError, fmm.zeroin, -1, 1, f, 0.01)
     
 
 if __name__ == '__main__':
