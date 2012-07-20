@@ -61,14 +61,25 @@ class testZeroin(unittest.TestCase):
         self.assertRaises(fmm.NoConvergeError, fmm.zeroin, -1, 1, f, 0.01)
     
     def test_non_converge_rand(self):
-        import random
+        # [x-1 if x<0.5 else x for x in
+        #                   [round(random.random(), 3) for r in range(25)]]
+
+        randseq = [-0.712, 0.94, -0.628, -0.724, 0.935, 0.868, -0.744,
+                   0.868, -0.993, -0.972, 0.764, -0.589, -0.762, 0.751,
+                   0.749, -0.522, -0.565, 0.957, -0.862, 0.748, 0.789,
+                   -0.862, -0.731, 0.654, -0.929]
         def f(x):
             if abs(x) == 1:
                 return x
-            fx = random.random()
-            return fx-1 if fx<0.5 else fx # -1 < x < -0.5 or 0.5 < x < 1
+            return randseq.pop()
         self.assertRaises(fmm.NoConvergeError, fmm.zeroin, -1, 1, f, 0.01)
+    
+    def test_few_evals(self):
+        "Too few allowed evaluations for convergence"
+        f = lambda x: x**3 - 5 # takes > 3 evaluations to converge
+        self.assertRaises(fmm.NoConvergeError, fmm.zeroin, 1, 10, f, 0.0001, 3)
     
 
 if __name__ == '__main__':
     unittest.main()
+
