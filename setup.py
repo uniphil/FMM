@@ -8,4 +8,5 @@ setup(name='FMM',
       license='Public Domain',
       description='Numerical Computations',
       long_description=readme,
+      ulr='https://github.com/uniphil/FMM',
       py_modules=['fmm'])
