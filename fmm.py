@@ -31,7 +31,8 @@ def zeroin(lower, upper, func, tol, max_eval=25):
         return b
       
     if (fa * fb > 0):
-        raise BadBoundsError
+        raise BadBoundsError('Bad Bounds. {}: {}; {}: {}'.format(
+            lower, fa, upper, fb))
 
     # The trivial cases have now been dealt with. On to the real work...
 
@@ -90,5 +91,5 @@ def zeroin(lower, upper, func, tol, max_eval=25):
 
     # The loop should never terminate. If it does, return the last iteration
     #  and set errCode to 1
-    raise NoConvergeError
+    raise NoConvergeError('Optimization did not converge.')
         

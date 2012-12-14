@@ -2,7 +2,7 @@ from setuptools import setup
 
 readme = open('README.txt').read()
 setup(name='FMM',
-      version='0.1',
+      version='0.12',
       author='Philip Schleihauf',
       author_email='uniphil@gmail.com',
       license='Public Domain',
