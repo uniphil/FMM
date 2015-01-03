@@ -40,9 +40,9 @@ def zeroin(lower, upper, func, tol, max_eval=25):
     d = e = b-a
     
     for _eval in range(neval, max_eval+1):
-        if (fb>0 and fc>0) or (fb<0 and fc<0):
+        if (fb > 0 and fc > 0) or (fb < 0 and fc < 0):
             c, fc = a, fa  # we insist that b and c straddle the 0
-            e = d = b-a
+            e = d = b - a
 
         if abs(fc) < abs(fb):
             a, b, c = b, c, b     # we insist that b be the better
